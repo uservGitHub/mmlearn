@@ -80,16 +80,22 @@ class AnimationManager {
     }
 
     public void startFlingAnimation(int startX, int startY, int velocityX, int velocityY, int minX, int maxX, int minY, int maxY) {
+        KLog.info("startFlingAnimation:1 stopFling");
         stopAll();
         flinging = true;
         scroller.fling(startX, startY, velocityX, velocityY, minX, maxX, minY, maxY);
+        KLog.info(startX, startY, velocityX, velocityY, minX, maxX, minY, maxY);
+        KLog.info("startFlingAnimation:2 scroller.fling");
     }
 
     void computeFling() {
+        //KLog.info("computeFling,ref=1(computeScroll)");
         if (scroller.computeScrollOffset()) {
+            KLog.info("moving",scroller.getCurrX(), scroller.getCurrY());
             pdfView.moveTo(scroller.getCurrX(), scroller.getCurrY());
             pdfView.loadPageByOffset();
         } else if (flinging) { // fling finished
+            KLog.info("endMove",scroller.getCurrX(), scroller.getCurrY());
             flinging = false;
             pdfView.loadPages();
             hideHandle();
@@ -105,6 +111,7 @@ class AnimationManager {
     }
 
     public void stopFling() {
+        KLog.info("stopFling");
         flinging = false;
         scroller.forceFinished(true);
     }

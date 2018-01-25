@@ -13,6 +13,7 @@ repositories {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply plugin: 'android-apt'
 
 android {
@@ -33,4 +34,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     provided 'org.androidannotations:androidannotations:4.0.0'
     compile 'org.androidannotations:androidannotations-api:4.0.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
